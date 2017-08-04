@@ -2,6 +2,30 @@ const nodemailer = require('nodemailer');
 const wellKnowns = require('./util/wellKnowns');
 
 const createTransport = (config) => {
+        let rejectUnauthorized = (config.rejectUnauthorized !== undefined)
+                ? config.rejectUnauthorized
+                : true;
+        let useAuth = config.user !== undefined && config.pass !== undefined;
+
+        let transportConfig = {
+            host: config.host,
+            port: config.port,
+            secure: config.secure || false,
+            connectionTimeout: 5000,
+            tls: {
+                rejectUnauthorized
+            }
+        }
+        if (useAuth) {
+          transportConfig.auth = {
+                user: config.user,
+                pass: config.pass
+            }
+        }
+        return nodemailer.createTransport(transportConfig);
+}
+
+const createTransport = (config) => {
 	let rejectUnauthorized = (config.rejectUnauthorized !== undefined) 
 		? config.rejectUnauthorized 
 		: true;
