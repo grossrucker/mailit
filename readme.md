@@ -131,6 +131,10 @@ Mailit uses express. The file ./middleware.js at the root of the directory expos
 
  - I'll probably add more functionality later. This is what I need right now.
 
+## Requirements
+
+ - Node.js 7+
+
 ## License
 
 MIT
