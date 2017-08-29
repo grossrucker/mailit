@@ -17,33 +17,12 @@ const createTransport = (config) => {
             }
         }
         if (useAuth) {
-          transportConfig.auth = {
+            transportConfig.auth = {
                 user: config.user,
                 pass: config.pass
             }
         }
         return nodemailer.createTransport(transportConfig);
-}
-
-const createTransport = (config) => {
-	let rejectUnauthorized = (config.rejectUnauthorized !== undefined) 
-		? config.rejectUnauthorized 
-		: true;
-
-	const transportConfig = {
-	    host: config.host,
-	    port: config.port,
-	    secure: config.secure || false,
-	    connectionTimeout: 5000,
-	    tls: {
-        	rejectUnauthorized
-    	},
-	    auth: {
-	        user: config.user,
-	        pass: config.pass
-	    }
-	}
-	return nodemailer.createTransport(transportConfig);
 }
 
 const sendEmail = (config, options) => {
