@@ -28,12 +28,25 @@ const createTransport = (config) => {
 const sendEmail = (config, options) => {
 	return new Promise((resolve, reject) => {
 		const transporter = createTransport(config);
+		let attachments = null;
+		
+		if (options.attachments) {
+			try {
+				let attachments = JSON.parse(options.attachments);
+				if (attachments && attachments.error)
+					return reject({success: false, status: 400, message: attachments.error});
+			} catch (e) {
+				return reject({success: false, status: 400, message: e.error});
+			}
+		}
+
 		let mailOptions = {
 			from: options.from || config.user,
 			to: options.to,
 			subject: options.subject,
 			text: options.text,
-			html: options.html
+			html: options.html,
+			attachments: attachments
 		};
 		transporter.sendMail(mailOptions, (error, info) => {
 		    if (error) {

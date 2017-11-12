@@ -33,6 +33,14 @@ And presto, a mail endpoint! Let's try it out:
 curl --data "to=d@me.net&subject=hi&text=hey world" http://127.0.0.1:3000/email
 ```
 
+To send attachments use the nodemailer attachments syntax.
+[Link to nodemailer documents](https://community.nodemailer.com/using-attachments/)
+
+```bash
+curl --data "to=d@me.net&subject=hi&text=hey world&attachments=[{\"filename\": \"text1.txt\",\"content\":\"Hello World!\"}]" http://127.0.0.1:3000/email
+```
+
+
 You can browse to interactive API docs at `/api`:
 
 <p align="center"><img src="https://raw.githubusercontent.com/thoughtbrew/img/master/mailit-api.png" width=700 alt="Screenshot of API docs for Addict."></p>
