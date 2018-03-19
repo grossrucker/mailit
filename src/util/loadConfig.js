@@ -32,10 +32,12 @@ module.exports = (args) => {
 		throw new Error(`No ${missing.join(', ')} specified in config.`);
 	}
 
-	console.log('');
-	Object.keys(config).forEach(item => {
-		console.log(`  ${item}: ${config[item]}`);
-	});
+	Object.keys(config)
+		.filter(item => {
+			return item !== 'pass'
+		}).forEach(item => {
+			console.log(`  ${item}: ${config[item]}`);
+		});
 
 	return config;
 }

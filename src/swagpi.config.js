@@ -14,6 +14,14 @@ module.exports = {
 					description: 'Recipient email address(es).', 
 					optional: false
 				},
+				"cc": {
+					description: 'CC Recipient email address(es).', 
+					optional: true
+				},
+				"bcc": {
+					description: 'BCC Recipient email address(es).', 
+					optional: true
+				},
 				"subject": {
 					description: 'Email subject.', 
 					optional: false

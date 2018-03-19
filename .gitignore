@@ -1,0 +1,5 @@
+config
+deploy_test.sh
+node_modules
+*.log
+.env
